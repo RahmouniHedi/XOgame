@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X-O"
+                    android:textSize="48sp"
+                    android:textStyle="bold"
+                    android:textColor="#6366F1"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TOURNOI"
+                    android:textSize="16sp"
+                    android:textColor="#94A3B8"
+                    android:letterSpacing="0.2"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Noms des joueurs"
+                    android:textSize="18sp"
+                    android:textColor="#475569"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Joueur X"
+                        android:textSize="14sp"
+                        android:textColor="#EC4899"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+
+                    <EditText
+                        android:id="@+id/etNomJoueurX"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:hint="Entrez le nom du joueur X"
+                        android:background="@drawable/spinner_background"
+                        android:padding="12dp"
+                        android:maxLines="1"
+                        android:inputType="textPersonName"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Joueur O"
+                        android:textSize="14sp"
+                        android:textColor="#3B82F6"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+
+                    <EditText
+                        android:id="@+id/etNomJoueurO"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:hint="Entrez le nom du joueur O"
+                        android:background="@drawable/spinner_background"
+                        android:padding="12dp"
+                        android:maxLines="1"
+                        android:inputType="textPersonName"
+                        android:layout_marginBottom="16dp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choisir qui commence"
+                    android:textSize="16sp"
+                    android:textColor="#475569"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroupSymbole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/radioX"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="X"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#EC4899"
+                        android:checked="true"
+                        android:layout_marginEnd="10dp"
+                        android:buttonTint="#EC4899"
+                        android:background="@drawable/radio_background"
+                        android:button="@null"
+                        android:gravity="center"/>
+
+                    <RadioButton
+                        android:id="@+id/radioO"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="O"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#3B82F6"
+                        android:layout_marginStart="10dp"
+                        android:buttonTint="#3B82F6"
+                        android:background="@drawable/radio_background"
+                        android:button="@null"
+                        android:gravity="center"/>
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de parties"
+                    android:textSize="16sp"
+                    android:textColor="#475569"
+                    android:textStyle="bold"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerNbParties"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/spinner_background"
+                    android:padding="12dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnJouer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="JOUER"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_primary"
+            android:elevation="4dp"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnPrincipe"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Principe du jeu"
+            android:textSize="16sp"
+            android:textColor="#6366F1"
+            android:background="@drawable/button_secondary"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnRetrouvScores"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Scores du dernier tournoi"
+            android:textSize="16sp"
+            android:textColor="#10B981"
+            android:background="@drawable/button_secondary"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnHistorique"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="📊 Historique des tournois"
+            android:textSize="16sp"
+            android:textColor="#F59E0B"
+            android:background="@drawable/button_secondary"/>
+
+    </LinearLayout>
+</ScrollView>
