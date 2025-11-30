@@ -126,7 +126,12 @@ public class MainActivity extends AppCompatActivity {
             ois.close();
             fis.close();
 
+            // Ensure we display player usernames (fallback to defaults if missing)
+            String nomJoueurX = data.getNomJoueurX() == null || data.getNomJoueurX().isEmpty() ? "Joueur X" : data.getNomJoueurX();
+            String nomJoueurO = data.getNomJoueurO() == null || data.getNomJoueurO().isEmpty() ? "Joueur O" : data.getNomJoueurO();
+
             String message = "🏆 RÉSULTATS\n\n" +
+                    "🎮 Joueurs : " + nomJoueurX + " (X) vs " + nomJoueurO + " (O)\n\n" +
                     "🔴 Score X : " + data.getScoreX() + "\n" +
                     "🔵 Score O : " + data.getScoreO() + "\n" +
                     "⚪ Parties nulles : " + data.getPartiesNulles() + "\n" +
