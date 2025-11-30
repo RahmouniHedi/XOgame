@@ -24,9 +24,12 @@ public class HistoriqueManager {
         private int partiesNulles;
         private int nombreTotalParties;
         private String vainqueur;
+        private String nomJoueurX;
+        private String nomJoueurO;
 
         public TournoiHistorique(int scoreX, int scoreO, int partiesNulles,
-                                 int nombreTotalParties, String vainqueur) {
+                                 int nombreTotalParties, String vainqueur,
+                                 String nomJoueurX, String nomJoueurO) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.FRENCH);
             this.date = sdf.format(new Date());
             this.scoreX = scoreX;
@@ -34,6 +37,8 @@ public class HistoriqueManager {
             this.partiesNulles = partiesNulles;
             this.nombreTotalParties = nombreTotalParties;
             this.vainqueur = vainqueur;
+            this.nomJoueurX = nomJoueurX;
+            this.nomJoueurO = nomJoueurO;
         }
 
         public String getDate() { return date; }
@@ -42,20 +47,24 @@ public class HistoriqueManager {
         public int getPartiesNulles() { return partiesNulles; }
         public int getNombreTotalParties() { return nombreTotalParties; }
         public String getVainqueur() { return vainqueur; }
+        public String getNomJoueurX() { return nomJoueurX; }
+        public String getNomJoueurO() { return nomJoueurO; }
 
         @Override
         public String toString() {
             return "📅 " + date + "\n" +
                     "🎮 " + nombreTotalParties + " parties\n" +
+                    "Joueurs : " + nomJoueurX + " (X) vs " + nomJoueurO + " (O)\n" +
                     "🔴 X: " + scoreX + " | 🔵 O: " + scoreO + " | ⚪ Nulles: " + partiesNulles + "\n" +
                     "🏆 " + vainqueur;
         }
     }
 
     public static void ajouterTournoi(Context context, int scoreX, int scoreO,
-                                      int partiesNulles, int total, String vainqueur) {
+                                      int partiesNulles, int total, String vainqueur,
+                                      String nomJoueurX, String nomJoueurO) {
         List<TournoiHistorique> historique = getHistorique(context);
-        historique.add(0, new TournoiHistorique(scoreX, scoreO, partiesNulles, total, vainqueur));
+        historique.add(0, new TournoiHistorique(scoreX, scoreO, partiesNulles, total, vainqueur, nomJoueurX, nomJoueurO));
 
         // Garder seulement les 20 derniers tournois
         if (historique.size() > 20) {

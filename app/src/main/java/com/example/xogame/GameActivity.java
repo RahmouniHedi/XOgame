@@ -488,8 +488,9 @@ public class GameActivity extends AppCompatActivity {
         try {
             String vainqueurInfo = nomVainqueur.equals("Égalité") ?
                     "Égalité" : nomVainqueur;
+            // Include player usernames when saving tournament data
             TournoiData data = new TournoiData(scoreX, scoreO, partiesNulles,
-                    nbPartiesTotal, vainqueurInfo);
+                    nbPartiesTotal, vainqueurInfo, nomJoueurX, nomJoueurO);
             FileOutputStream fos = openFileOutput(FILENAME, MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(data);
@@ -497,7 +498,7 @@ public class GameActivity extends AppCompatActivity {
             fos.close();
 
             HistoriqueManager.ajouterTournoi(this, scoreX, scoreO,
-                    partiesNulles, nbPartiesTotal, vainqueurInfo);
+                    partiesNulles, nbPartiesTotal, vainqueurInfo, nomJoueurX, nomJoueurO);
 
             Toast.makeText(this, "Tournoi sauvegardé", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
