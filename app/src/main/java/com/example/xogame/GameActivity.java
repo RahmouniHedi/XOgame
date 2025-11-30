@@ -17,7 +17,7 @@ import java.io.ObjectOutputStream;
 public class GameActivity extends AppCompatActivity {
 
     private static final String TAG = "GameActivity";
-    private static final int WIN_ANIMATION_DELAY_MS = 1000; // delay before showing result popup so animation can complete
+    private static final int WIN_ANIMATION_DELAY_MS = 1100; // delay before showing result popup so animation can complete
 
     private Button[] buttons = new Button[9];
     private TextView tvPartieNum, tvScoreX, tvScoreO, tvNulles, tvTour;
@@ -117,6 +117,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initializeGame() {
+        // Start or continue the tournament; always play the configured number of parties
         gameActive = true;
         winningLine = null;
 
@@ -387,6 +388,8 @@ public class GameActivity extends AppCompatActivity {
             uiHandler.postDelayed(() -> {
                 try {
                     dialog.dismiss();
+
+                    // Continue to next game until total parties are exhausted
                     if (partieActuelle < nbPartiesTotal) {
                         partieActuelle++;
                         initializeGame();
@@ -409,23 +412,19 @@ public class GameActivity extends AppCompatActivity {
 
             String vainqueur;
             String nomVainqueur;
-            String emoji;
             String colorCode;
 
             if (scoreX > scoreO) {
                 vainqueur = "Joueur X";
                 nomVainqueur = nomJoueurX;
-                emoji = "🔴";
                 colorCode = "#EC4899";
             } else if (scoreO > scoreX) {
                 vainqueur = "Joueur O";
                 nomVainqueur = nomJoueurO;
-                emoji = "🔵";
                 colorCode = "#3B82F6";
             } else {
                 vainqueur = "Égalité";
                 nomVainqueur = "Égalité";
-                emoji = "";
                 colorCode = "#10B981";
             }
 
@@ -438,9 +437,21 @@ public class GameActivity extends AppCompatActivity {
             titleView.setTypeface(null, android.graphics.Typeface.BOLD);
 
             TextView resultView = new TextView(this);
-            String winnerText = vainqueur.equals("Égalité") ?
-                    emoji + " " + vainqueur + " gagne" + emoji :
-                    emoji + " " + nomVainqueur + " gagne" + emoji;
+            // Show result as e.g. "Joueur X qui gagne" or "Joueur O qui gagne"
+            String winnerText;
+            if (vainqueur.equals("Égalité")) {
+                winnerText = "Égalité";
+            } else {
+                // Use the internal X/O label as requested
+                if (scoreX > scoreO) {
+                    winnerText = nomVainqueur+" qui gagne";
+                } else if (scoreO > scoreX) {
+                    winnerText =nomVainqueur+" qui gagne";
+                } else {
+                    // Fallback to the provided winner name
+                    winnerText = nomVainqueur + " qui gagne";
+                }
+            }
             String resultText = winnerText + "\n\n" +
                     " Total : " + nbPartiesTotal + " parties"+"\n" +
                     "🔴 " + nomJoueurX + " : " + scoreX + "\n" +
